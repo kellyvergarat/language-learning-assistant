@@ -5,11 +5,20 @@ client = chromadb.Client()
 # Create collection. get_collection, get_or_create_collection, delete_collection also available!
 collection = client.create_collection("all-my-documents")
 
+# unique for each doc
 # Add docs to the collection. Can also update and delete. Row-based API coming soon!
+# Read documents from local text files
+documents = []
+for file_path in ["doc1.txt", "doc2.txt"]:  # List your text file paths
+    with open(file_path, "r") as f:
+        documents.append(f.read())
+
 collection.add(
-    documents=["This is document1", "This is document2"], # we handle tokenization, embedding, and indexing automatically. You can skip that and add your own embeddings as well
-    metadatas=[{"source": "notion"}, {"source": "google-docs"}], # filter on these!
-    ids=["doc1", "doc2"], # unique for each doc
+    documents=documents, # Pass list of document contents read from files
+    metadatas=[{"source": "doc1.txt"},
+               {"source": "doc2.txt"}], # Use filenames as source
+    ids=["doc1", 
+        "doc2"], # unique for each doc
 )
 
 # Query/search 2 most similar results. You can also .get by id
@@ -19,3 +28,5 @@ results = collection.query(
     # where={"metadata_field": "is_equal_to_this"}, # optional filter
     # where_document={"$contains":"search_string"}  # optional filter
 )
+
+print(results)
