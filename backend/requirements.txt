@@ -1,0 +1,3 @@
+chromadb
+Streamlit
+boto3
