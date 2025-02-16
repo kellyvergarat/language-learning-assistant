@@ -38,3 +38,17 @@ This structure:
 2. Highlights key technical challenges
 3. Defines specific constraints
 4. Keeps focus on both learning outcomes and technical implementation
+
+## Knowledge base 
+https://github.com/chroma-core/chroma
+
+### To run the app locally, follow the steps below:
+
+Activate the virtual environment and run the following command:
+```bash
+pipenv shell
+```
+Run streamlit app command from the root directory:
+```bash
+streamlit run frontend/main.py
+```
